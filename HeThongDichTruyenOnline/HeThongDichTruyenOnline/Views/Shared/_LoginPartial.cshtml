@@ -1,0 +1,26 @@
+﻿@using HeThongDichTruyenOnline.Models;
+@{
+    NguoiDung nguoi = (NguoiDung)Session["TaiKhoan"];
+}
+@if (nguoi != null)
+{
+    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+    {
+        @Html.AntiForgeryToken()
+
+        <ul class="nav navbar-nav navbar-right">
+            <li>
+                @Html.ActionLink("Hello " + nguoi.Taikhoan + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
+            </li>
+            <li>@Html.ActionLink("Thoát","DangXuat","NguoiDung")</li>
+        </ul>
+    }
+}
+else
+{
+    <ul class="nav navbar-nav navbar-right">
+        <li>@Html.ActionLink("Đăng ký", "DangKy", "NguoiDung")</li>
+        <li>@Html.ActionLink("Đăng Nhập", "DangNhap", "NguoiDung")</li>
+    </ul>
+}
+
