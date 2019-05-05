@@ -14,7 +14,10 @@ namespace HeThongDichTruyenOnline.Controllers
         // GET: NguoiDung
         public ActionResult Index()
         {
-            return View();
+            if (Session["TaiKhoan"] != null)
+                return View();
+            else
+                return RedirectToAction("DangNhap");
         }
         public int KiemTrakMatKhau(string text)
         {
